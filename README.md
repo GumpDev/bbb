@@ -1,6 +1,6 @@
-# bbb
+# BBBot
 
-Para usar:
+### Para usar
   1. Instale Python e Pip na sua máquina
   2. Digite 'pip install mouse keyboard tkinter
   3. Digite 'python main.py' na pasta que tem o script
@@ -8,9 +8,18 @@ Para usar:
   5. Aperte 'f2' para ativar e desativar o bot
   6. Seja feliz
   
-Avisos:
+### Avisos
   Esse bot foi feito usando em consideração a minha internet e a minha resolução, isso pode afetar como ele funciona no seu computador, qualquer coisa, se você for um dev, altere os parametros do script até ficar adequado a sua internet e resolução
   *Minha resolução é 1920x1080
 
-Captcha:
+### Captcha
   No site de votação do BBB quando aparece captcha, apenas fique apertando 'f5' que uma hora ele irá parar de aparecer
+
+### Depedencias
+  - mouse
+  - keyboard
+  - pyscreenshot
+  - clipboard
+
+### Linux
+  precisa instalar o 'xdotool' para funcionar o BBBot
