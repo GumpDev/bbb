@@ -18,6 +18,7 @@ def main(event):
         thread = Thread(target=work, args=())
         thread.start()
 
+# 1920x1080 tested on
 def work():
     keyboard.send('f5')
     time.sleep(2)
