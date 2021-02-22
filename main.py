@@ -25,18 +25,18 @@ class BBBot:
     def updateTries():
         if(not BBBot.iniciado):
             BBBot.TT = tkinter.Text(root,background='black', fg='white')
-            BBBot.TT.insert(1.0, "Tentativas: {}\nAcertos: {}".format(BBBot.tries,BBBot.sucess))
+            BBBot.TT.insert(1.0, "Tentativas: {}".format(BBBot.tries))
             BBBot.TT.pack()
             BBBot.iniciado = True
         else: 
             BBBot.TT.delete(1.0, "end")
-            BBBot.TT.insert(1.0, "Tentativas: {}\nAcertos: {}".format(BBBot.tries,BBBot.sucess))
-
-BBBot.updateTries()
+            BBBot.TT.insert(1.0, "Tentativas: {}".format(BBBot.tries))
 
 T = tkinter.Text(root,background='black', fg='white')
 T.pack()
 T.insert(tkinter.END, "=============================\nBem-vindo ao bot de\nvotação da Karol Conká no BBB\n=============================\nAbra a página de votação do bbb, deixe em tela cheia no seu monitor principal e utilize 'f2' para ativar/desativar o bot")
+
+BBBot.updateTries()
 
 def mouseClickLinux(mouseBtn):
     os.system("xdotool click {}".format(mouseBtn))
@@ -50,10 +50,10 @@ def config():
     elif BBBot.step == 2:
         BBBot.pos.append(mouse.get_position())
         tkinter.messagebox.showinfo(title="Calibrando", message="Coloque seu mouse encima do captcha e aperte 'f4'\nImportante que você não de scroll na página!")
+    #elif BBBot.step == 3:
+        #BBBot.pos.append(mouse.get_position())
+        #tkinter.messagebox.showinfo(title="Calibrando", message="Coloque seu mouse encima da imagem de OK quando você vota na Karol Conká e aperte 'f4'\nse necessario resolva o captcha para ir para página de voto realizado!")
     elif BBBot.step == 3:
-        BBBot.pos.append(mouse.get_position())
-        tkinter.messagebox.showinfo(title="Calibrando", message="Coloque seu mouse encima da imagem de OK quando você vota na Karol Conká e aperte 'f4'\nse necessario resolva o captcha para ir para página de voto realizado!")
-    elif BBBot.step == 4:
         BBBot.pos.append(mouse.get_position())
         tkinter.messagebox.showinfo(title="Calibrado!", message="Calibrado, agora só apertar 'f2' para começar a usar")
         BBBot.needConfig = False
@@ -102,8 +102,8 @@ def work():
         mouse.move(BBBot.pos[1][0],BBBot.pos[1][1])
         mouseClickLinux(1)
         # if not captcha
-        mouse.move(BBBot.pos[2][0],BBBot.pos[2][1])
-        time.sleep(BBBot.internetSpeed)
+        #mouse.move(BBBot.pos[2][0],BBBot.pos[2][1])
+        #time.sleep(BBBot.internetSpeed)
         # mouseClickLinux(1)                     
     else:
         scroll()
@@ -114,17 +114,18 @@ def work():
         mouse.move(BBBot.pos[1][0],BBBot.pos[1][1])
         mouse.click()
         # if not captcha
-        mouse.move(BBBot.pos[2][0],BBBot.pos[2][1])
-        time.sleep(BBBot.internetSpeed)
+        #mouse.move(BBBot.pos[2][0],BBBot.pos[2][1])
+        #time.sleep(BBBot.internetSpeed)
         # mouse.click()    
     time.sleep(BBBot.internetSpeed)
-    takeScreenshot()
+    if(BBBot.ativo):
+        work()
+
+def VerifyResult():
     im = Image.open("output.png")
     cordinate = x, y = mouse.get_position()[0], mouse.get_position()[1]
     if im.getpixel(cordinate) == (0, 0, 0):
         BBBot.sucess += 1
-    if(BBBot.ativo):
-        work()
 
 keyboard.on_release(main)
 
